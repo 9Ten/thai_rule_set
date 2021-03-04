@@ -519,8 +519,6 @@ def Name(p: str):
         output = {k: v for k, v in zip(isOrganize_key, output)}
     if not isTitle and not isOrganize:
         output = SetUnhandle()
-        # output = SplitIndividualName(p)
-        # output = {k:v for k, v in zip(isTitle_key, output)}
     if isTitle and isOrganize:
         output = SetUnhandle()
 
@@ -533,10 +531,10 @@ def Name(p: str):
 
 
 if __name__ == "__main__":
+    # To test
     print(Name('ดีทแฮล์ม แอนด์ โก ลิมิเต็ด'))
     print(Name('บจก. แสงเจริญการไฟฟ้า และ เสียง'))
     print(Name('นาย-นาง สมชัย-พรพรรณ แซ่ลิ้ม-วสุกวิน'))
     print(Name('นายวิชัย. นางนันทนา ตันติวัฒน์พานิช'))
     print(Name('นาย.นาง อัฑฒ์.ชนัญดา พรัดภู่'))
     print(Name('นายชื่อ นามสกุล'))
-    # "นายพนพจน์  พวงนาค (สหกรณ์) การเกษตรจำกัด อุบลราชธานี 11120//()((()()))"
