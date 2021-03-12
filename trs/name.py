@@ -332,8 +332,6 @@ def SplitIndividualName(p):
     return p
 
 # Revise version
-
-
 def within_margin(keyword, p, margin=3):
     index = p.find(keyword)
     l_index = index

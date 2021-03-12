@@ -144,16 +144,15 @@ async def data_refinery_text_list(req_body: TextList):
 # To refine by table
 @app.post(base_url + "/data_refinery/text_file")
 async def data_refinery_text_file(file: bytes = File(...)):
-    '''urlpath: string or list'''
+    '''urlpath: string or list return json response'''
     text_stream = io.BytesIO(file)
     df = pd.read_csv(text_stream, encoding='utf-8', dtype=str)
     column_list = df.columns.to_list()
 
     # To parallel processing with Dask
     ddf = dd.from_pandas(df, npartitions=4)\
-        .map_partitions(lambda df: df.applymap(lambda text: Name(text)))\
+        .map_partitions(lambda df: df.applymap(lambda text: {'result': Name(text)}))\
         .compute()  # .compute(scheduler='processes')
-
     result_dict = [{"column_name": column, "output": ddf[column].to_list()}\
         for column in column_list]
     return {"result": {"column_list": column_list, "result": result_dict}}
@@ -163,3 +162,4 @@ if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000, debug=True)
     # uvicorn main:app --reload
+    # Limitation: 1000 rows
