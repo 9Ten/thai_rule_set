@@ -64,7 +64,7 @@ def RemoveMultipleDot(p):
 
 
 def ConcatIndividualTitle(TITLE):
-
+    
     TITLE = TITLE.strip()
     index = 0
     isFound = True
