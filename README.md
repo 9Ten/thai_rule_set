@@ -1,4 +1,5 @@
 # thai_rule_set
+have 2 core features such as Data Discovery and Data Refinery 
 
 ## Step by step
 1. pipenv shell
